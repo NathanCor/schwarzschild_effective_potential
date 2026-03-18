@@ -65,7 +65,7 @@ int main()
         const double r = y[0];
         const double phi = y[2];
 
-        // TODO 10 ── Condition d'arrêt : absorption par le trou noir.
+        // Condition d'arrêt : absorption par le trou noir.
         //   Si r < STOP_FACTOR * RS, afficher un message et sortir.
         if (r < STOP_FACTOR * RS)
         {
@@ -75,14 +75,13 @@ int main()
             break;
         }
 
-        // TODO 11 ── Calculer x et y_cart en coordonnées cartésiennes.
         //   x      = r · cos(phi)
         //   y_cart = r · sin(phi)
         //   (std::cos et std::sin attendent des radians)
         const double x = r * cos(phi);
         const double y_cart = r * sin(phi);
 
-        // TODO 12 ── Écrire une ligne dans le CSV.
+        //   Écrire une ligne dans le CSV.
         //   Colonnes : tau, r, phi, x, y_cart, Veff(r,L), y[1]
         //   Séparateur : virgule.  Terminer par '\n'.
         csv << tau << ","

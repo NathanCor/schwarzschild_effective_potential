@@ -32,13 +32,12 @@ E  = 0.96
 #  Lecture du CSV
 # ════════════════════════════════════════════════════════════════
 
-# TODO A ── Charger trajectory.csv dans un DataFrame pandas.
+#   Charger trajectory.csv dans un DataFrame pandas.
 #   La première ligne est l'en-tête (colonnes : tau,r,phi,x,y_cart,Veff,rdot).
-#   Conseil : pd.read_csv(...)
 
 df = pd.read_csv(CSV_FILE, sep=',', skipinitialspace=True)
 df.columns = df.columns.str.strip()
-print(df.columns.tolist())  # pour vérifier les noms de colonnes
+print(df.columns.tolist())
 
 
 # Vérification rapide
@@ -65,28 +64,21 @@ ax_orbit, ax_r, ax_veff, ax_rdot = axes.flatten()
 
 ax = ax_orbit
 
-# TODO B ── Tracer la trajectoire (x, y_cart) avec une couleur
+#  Tracer la trajectoire (x, y_cart) avec une couleur
 #   qui évolue le long de la trajectoire pour indiquer la progression.
-#
-#   Indice : créez des segments avec np.array et LineCollection,
-#   ou simplement ax.plot(df["x"], df["y_cart"], ...).
-#   Pour la couleur progressive : utilisez scatter avec c=df["tau"]
-#   et cmap="plasma" (chaud = fin de trajectoire).
 
-# --- À COMPLÉTER ---
+
 sc = ax.scatter(df["x"], df["y_cart"], c=df["tau"], cmap="plasma", s=0.5)
 fig.colorbar(sc, ax=ax, label="τ (temps propre)")
-# -------------------
+
 
 # Horizon de Schwarzschild (cercle de rayon rs)
-# TODO C ── Dessiner un disque noir de rayon RS centré en (0, 0).
-#   Conseil : patches.Circle((0, 0), RS, color='black', zorder=5)
-#   et ax.add_patch(...)
+# Dessiner un disque noir de rayon RS centré en (0, 0).
 
-# --- À COMPLÉTER ---
+
 horizon = patches.Circle((0, 0), RS, color='black', zorder=5)
 ax.add_patch(horizon)
-# -------------------
+
 
 ax.set_aspect("equal")
 ax.set_xlabel("x  [M]")
@@ -101,18 +93,18 @@ ax.grid(True, alpha=0.3)
 
 ax = ax_r
 
-# TODO D ── Tracer r en fonction de tau.
+#   Tracer r en fonction de tau.
 #   Ajouter une ligne horizontale en pointillés rouges à r = RS
 #   (horizon de Schwarzschild).
-#   Annoter cette ligne avec "horizon $r_s$".
 
-# --- À COMPLÉTER ---
+
+
 ax.plot(df["tau"], df["r"], color="steelblue", lw=1)
 ax.axhline(RS, color="red", linestyle="--", label="horizon $r_s$")
 ax.annotate("horizon $r_s$", xy=(df["tau"].iloc[0], RS),
             xytext=(0, 6), textcoords="offset points", color="red")
 ax.legend()
-# -------------------
+
 
 ax.set_xlabel("τ  (temps propre)")
 ax.set_ylabel("r  [M]")
@@ -133,23 +125,22 @@ ax = ax_veff
 
 r_grid = np.linspace(RS + 0.1, 30.0, 800)
 
-# TODO E ── Calculer Veff sur r_grid avec la formule analytique.
-#   Tout est vectorisable (numpy).
+#   Calculer Veff sur r_grid
 
 veff_grid = np.sqrt((1 - 2*M/r_grid) * (1 + L**2/r_grid**2))
 
-# TODO F ── Tracer Veff(r) et ajouter :
+#   Tracer Veff(r) et ajouter :
 #   - une ligne horizontale E = cste  (niveau d'énergie de la particule)
 #   - une zone grisée pour r < RS (intérieur de l'horizon)
 #   - les régions "interdites" (E < Veff) en hachuré léger
 
-# --- À COMPLÉTER ---
+
 ax.plot(r_grid, veff_grid, color="darkorange", lw=2, label="$V_{eff}(r)$")
 ax.axhline(E, color="steelblue", linestyle="--", label=f"E = {E}")
 ax.axvspan(0, RS, color="black", alpha=0.3, label="horizon")
 ax.fill_between(r_grid, veff_grid, E, where=(veff_grid > E),
                 alpha=0.15, color="red", label="zone interdite")
-# -------------------
+
 
 ax.set_xlim(0, 25)
 ax.set_xlabel("r  [M]")
@@ -165,13 +156,13 @@ ax.grid(True, alpha=0.3)
 
 ax = ax_rdot
 
-# TODO G ── Tracer rdot (= dr/dτ) en fonction de tau.
+# Tracer rdot (= dr/dτ) en fonction de tau.
 #   Ajouter une ligne horizontale à 0 pour repérer les points de retour.
 
-# --- À COMPLÉTER ---
+
 ax.plot(df["tau"], df["rdot"], color="mediumpurple", lw=1)
 ax.axhline(0, color="gray", linestyle="--", lw=0.8)
-# -------------------
+
 
 ax.set_xlabel("τ  (temps propre)")
 ax.set_ylabel("dr/dτ")

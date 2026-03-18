@@ -6,7 +6,6 @@
 #include "schwarzschild.h"   // derivatives()
 
 // ── Opérations sur State ──────────────────────────────────────
-// (définies ici localement pour éviter la surcharge d'opérateurs globale)
 
 static State add(const State& a, const State& b)
 {

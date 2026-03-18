@@ -23,13 +23,11 @@ double Veff(double r, double L_)
 {
     if (r <= RS) return 0.0;
 
-    // TODO 1 ── Calculer V²eff puis retourner sa racine carrée.
-    //
     //   Décomposez en deux facteurs :
     //     f1 = (1 - 2M/r)         ← facteur métrique
     //     f2 = (1 + L²/r²)        ← facteur centrifuge + repos
     //
-    //   Rappel : std::sqrt(x), et M et RS sont dans params.h.
+    //   std::sqrt(x), et M et RS sont dans params.h.
 
     const double f1 = 1 - 2*M/r;
     const double f2 = 1 + L*L/(r*r);
@@ -56,8 +54,6 @@ double dVeff_dr(double r, double L_)
     const double v = Veff(r, L_);
     if (v < 1e-14) return 0.0;
 
-    // TODO 2 ── Calculer dV2_dr = f1'·f2 + f1·f2'
-    //           puis retourner dV2_dr / (2*v).
 
     const double f1 = 1.0 - 2.0 * M / r;
     const double f2 = 1.0 + L_ * L_ / (r * r);
@@ -91,7 +87,6 @@ double compute_rdot0(double r0, double sign)
         return 0.0;
     }
 
-    // TODO 3 ── Retourner sign * racine(disc).
     return sign * sqrt(disc);
 }
 
@@ -120,16 +115,15 @@ State derivatives(const State& y)
     // dy[0] : vitesse = dérivée de la position
     dy[0] = rdt;
 
-    // TODO 4 ── Accélération radiale effective.
+    //   Accélération radiale effective.
     //   Formule : -M/r² + L²*(r - 3M)/r⁴
-    //   Conseil : calculez r2=r*r, r4=r2*r2 pour éviter pow().
 
     const double r2 = r * r;
     const double r4 = r2 * r2;
 
     dy[1] = -M/r2 + L*L*(r-3*M)/r4;
 
-    // TODO 5 ── Vitesse angulaire.
+    // Vitesse angulaire.
     //   Formule : L / r²
     dy[2] = L/r2;
 
