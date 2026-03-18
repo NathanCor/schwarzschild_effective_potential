@@ -1,0 +1,7 @@
+echo "*.o
+*.exe
+*.png
+trajectory.csv
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user" > .gitignore
