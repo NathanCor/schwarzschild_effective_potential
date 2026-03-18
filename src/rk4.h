@@ -2,9 +2,9 @@
 #include "schwarzschild.h"   // State
 
 // ============================================================
-//  rk4.h — Intégrateur Runge-Kutta d'ordre 4
+//  rk4.h — Fourth-order Runge-Kutta integrator
 //
-//  Schéma classique (erreur locale O(h⁵), globale O(h⁴)) :
+//  Classic scheme (local error O(h⁵), global error O(h⁴)):
 //
 //    k1 = h · f(yₙ)
 //    k2 = h · f(yₙ + k1/2)
@@ -14,5 +14,5 @@
 //    yₙ₊₁ = yₙ + k1/6 + k2/3 + k3/3 + k4/6
 // ============================================================
 
-// Effectue un pas de temps propre h à partir de l'état y.
+// Advances one proper time step h from state y.
 State rk4_step(const State& y, double h);

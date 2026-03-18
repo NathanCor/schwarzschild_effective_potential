@@ -1,11 +1,11 @@
 // ============================================================
-//  rk4.cpp — Intégrateur Runge-Kutta d'ordre 4
+//  rk4.cpp — Fourth-order Runge-Kutta integrator
 // ============================================================
 
 #include "rk4.h"
 #include "schwarzschild.h"   // derivatives()
 
-// ── Opérations sur State ──────────────────────────────────────
+// ── State vector operations ───────────────────────────────────
 
 static State add(const State& a, const State& b)
 {
@@ -21,8 +21,8 @@ static State scale(const State& a, double s)
 // ============================================================
 //  rk4_step(y, h)
 //
-//  Effectue un pas de durée h (temps propre) depuis l'état y.
-//  Retourne le nouvel état yₙ₊₁.
+//  Advances one step of duration h (proper time) from state y.
+//  Returns the new state yₙ₊₁.
 // ============================================================
 State rk4_step(const State& y, double h)
 {

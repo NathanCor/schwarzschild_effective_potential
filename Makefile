@@ -1,46 +1,35 @@
 # ============================================================
-#  Makefile — Schwarzschild : chute vers l'horizon
+#  Makefile — Schwarzschild: fall toward the event horizon
 #
-#  Usage :
-#    make          →  compile + simule + trace
-#    make build    →  compilation seule
-#    make run      →  lance la simulation  (génère trajectory.csv)
-#    make plot     →  lance le script Python
-#    make clean    →  supprime les binaires et le CSV
+#  Usage:
+#    make          →  compile + simulate + plot
+#    make build    →  compilation only
+#    make run      →  run the simulation  (generates trajectory.csv)
+#    make plot     →  run the Python script
+#    make clean    →  remove binaries and the CSV
 # ============================================================
 
 CXX      = g++
 CXXFLAGS = -std=c++17 -O2 -Wall -Wextra
-TARGET   = schwarzschild
-SRCS     = main.cpp schwarzschild.cpp rk4.cpp
-OBJS     = $(SRCS:.cpp=.o)
+TARGET   = schwarzschild.exe
+SRCS     = src/main.cpp src/schwarzschild.cpp src/rk4.cpp
 
-# ── Cible par défaut ─────────────────────────────────────────
+# ── Default target ────────────────────────────────────────────
 all: build run plot
 
-# ── Compilation ──────────────────────────────────────────────
-build: $(TARGET)
+# ── Compilation ───────────────────────────────────────────────
+build:
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)
 
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# ── Dépendances des headers ───────────────────────────────────
-main.o:          main.cpp params.h schwarzschild.h rk4.h
-schwarzschild.o: schwarzschild.cpp schwarzschild.h params.h
-rk4.o:           rk4.cpp rk4.h schwarzschild.h
-
-# ── Simulation ───────────────────────────────────────────────
+# ── Simulation ────────────────────────────────────────────────
 run: $(TARGET)
 	./$(TARGET)
 
-# ── Graphiques Python ─────────────────────────────────────────
+# ── Python plots ──────────────────────────────────────────────
 plot:
-	python3 plot.py
+	python3 scripts/plot.py
 
-# ── Nettoyage ─────────────────────────────────────────────────
+# ── Cleanup ───────────────────────────────────────────────────
 clean:
 	rm -f $(OBJS) $(TARGET) trajectory.csv schwarzschild_plots.png
 
