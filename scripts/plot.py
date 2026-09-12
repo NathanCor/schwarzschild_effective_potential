@@ -151,7 +151,7 @@ ax.grid(True, alpha=0.3)
 
 ax = ax_rdot
 
-# Plot rdot (= dr/dτ) as a function of tau.
+# Plot rdot (= dr/dtau) as a function of tau.
 #   Add a horizontal line at 0 to identify turning points.
 
 ax.plot(df["tau"], df["rdot"], color="mediumpurple", lw=1)
