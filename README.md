@@ -2,7 +2,7 @@
 
 This project is a high-performance numerical simulator for particle trajectories (geodesics) around a non-rotating black hole using the **Schwarzschild metric**. 
 
-Developed by a 2nd-year Physics student (L2), this tool bridges the gap between theoretical General Relativity and computational physics.
+This tool bridges the gap between theoretical General Relativity and computational physics.
 
 ![Simulation Results](assets/simulation_output.png)
 *Typical output showing the effective potential, radial velocity, and the trajectory of a captured particle.*
@@ -50,7 +50,7 @@ The project is fully automated via the `Makefile`. You can use the following com
 | `make clean` | **Cleanup**: Removes the binary and the generated CSV data. |
 
 ## 📝 Theoretical Derivations
-Detailed handwritten derivations of the geodesic equations from the Schwarzschild metric can be found in the `docs/` folder. This documentation tracks the mathematical transition from the metric line element to the final system of first-order ODEs.
+Detailed handwritten derivations of the geodesic equations from the Schwarzschild metric can be found in the `docs/` folder.
 
 ## 📚 Academic References
 * *A First Course in General Relativity*, Bernard Schutz.
