@@ -57,7 +57,7 @@ double dVeff_dr(double r, double L_)
     const double f1 = 1.0 - 2.0 * M / r;
     const double f2 = 1.0 + L_ * L_ / (r * r);
     const double df1_dr = 2*M/(r*r);        // derivative of f1
-    const double df2_dr = -2*L*L/(r*r*r);   // derivative of f2
+    const double df2_dr = -2*L_*L_/(r*r*r);   // derivative of f2
     const double dV2_dr = df1_dr * f2 + f1 * df2_dr;   // product rule
     return dV2_dr / (2.0 * v);
 }
