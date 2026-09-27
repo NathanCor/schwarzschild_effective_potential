@@ -105,7 +105,7 @@ int main()
         << CSV_FILE << "\n"
         << "  final r   = " << y[0] << "  M\n"
         << "  final phi = " << y[2] << "  rad  ("
-        << y[2] / (2.0 * M_PI) << " orbits)\n";
+        << y[2] / (2.0 * SIM_PI) << " orbits)\n";
 
     return 0;
 }
