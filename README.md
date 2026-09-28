@@ -7,6 +7,20 @@ This tool bridges the gap between theoretical General Relativity and computation
 ![Simulation Results](assets/simulation_output.png)
 *Typical output showing the effective potential, radial velocity, and the trajectory of a captured particle.*
 
+---
+
+## The Black Hole Trilogy
+
+This project is the last chapter of a three-part series, going from the physics of a single trajectory to a full animated render:
+
+| # | Project | What it does |
+| :-- | :-- | :-- |
+| 1 | **`schwarzschild_effective_potential`** (this repository) | Integrates the fall of a massive particle in the Schwarzschild metric (effective potential, RK4) and plots its orbit. |
+| 2 | [`blackhole_tracer`](https://github.com/NathanCor/blackhole_tracer) | Ray tracer producing a still image of a black hole and its accretion disk from a fixed viewpoint, with a benchmark against the exact null geodesics. |
+| 3 | [`blackhole_tracer_3d`](https://github.com/NathanCor/blackhole_tracer_3d) | Animated version: the camera orbits the black hole, and the disk rotates in a seamless loop. |
+
+---
+
 ## 🌌 Physics Overview
 
 The simulation integrates the equations of motion derived from the **Schwarzschild vacuum solution**. By exploiting the symmetries of the spacetime, we define the **Effective Potential** $V_{\text{eff}}$ for a massive test particle:
