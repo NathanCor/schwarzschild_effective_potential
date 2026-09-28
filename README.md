@@ -11,7 +11,7 @@ This tool bridges the gap between theoretical General Relativity and computation
 
 ## The Black Hole Trilogy
 
-This project is the last chapter of a three-part series, going from the physics of a single trajectory to a full animated render:
+This project is the first chapter of a three-part series, going from the physics of a single trajectory to a full animated render:
 
 | # | Project | What it does |
 | :-- | :-- | :-- |
